@@ -39,4 +39,12 @@ describe('Tic-Tac-Toe Game', () => {
     expect(game.players[0]).toBe('X')
     expect(game.players[1]).toBe('O')
   })
+
+  test('should allow to make the second move to the player number two', () => {
+    game.pickCell([2, 2])
+    game.pickCell([0, 1])
+
+    expect(game.board[2][2]).toBe('X')
+    expect(game.board[0][1]).toBe('O')
+  })
 })
