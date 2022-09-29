@@ -10,6 +10,13 @@ class Game {
       ['', '', '']
     ]
   }
+
+  pickCell (boardCoords) {
+    const [x, y] = boardCoords
+
+    this.board[x][y] = 'X'
+    this.players = ['X', 'O']
+  }
 }
 
 describe('Tic-Tac-Toe Game', () => {
