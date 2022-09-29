@@ -123,4 +123,18 @@ describe('Tic-Tac-Toe Game', () => {
     expect(game.gameResult).toBe('Player One Wins!')
     expect(hasEnded).toBe(true)
   })
+
+  test('should win the player number two', () => {
+    game.pickCell([0, 0])
+    game.pickCell([2, 0])
+    game.pickCell([1, 0])
+    game.pickCell([1, 1])
+    game.pickCell([2, 2])
+    game.pickCell([0, 2])
+
+    const hasEnded = game.hasEnded()
+
+    expect(game.gameResult).toBe('Player Two Wins!')
+    expect(hasEnded).toBe(true)
+  })
 })
