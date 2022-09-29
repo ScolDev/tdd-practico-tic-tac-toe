@@ -20,6 +20,10 @@ class Game {
   pickCell (boardCoords) {
     const [x, y] = boardCoords
 
+    if (this.board[x][y] !== '') {
+      return
+    }
+
     this.board[x][y] = this.numOfMoves % 2 === 0
       ? this.players[0]
       : this.players[1]
