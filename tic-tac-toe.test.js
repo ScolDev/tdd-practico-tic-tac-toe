@@ -60,10 +60,38 @@ class Game {
       this.board[x][2]
     ]
 
-    if (column !== '' && column[0] === column[1] && column[0] === column[2]) {
+    if (column[0] !== '' && column[0] === column[1] && column[0] === column[2]) {
       this.ended = true
-      this.gameResult = 'Player One Wins!'
+      this.gameResult = `${this.getLastPlayerToMove()} Wins!`
     }
+
+    const diagonals = [
+      [
+        this.board[0][0],
+        this.board[1][1],
+        this.board[2][2]
+      ], [
+        this.board[2][0],
+        this.board[1][1],
+        this.board[0][2]
+      ]
+    ]
+
+    for (let i = 0; i < diagonals.length; i++) {
+      const diagonal = diagonals[i]
+      if (diagonal[0] !== '' && diagonal[0] === diagonal[1] && diagonal[0] === diagonal[2]) {
+        this.ended = true
+        this.gameResult = `${this.getLastPlayerToMove()} Wins!`
+      }
+    }
+  }
+
+  getLastPlayerToMove () {
+    if ((this.numOfMoves - 1) % 2 === 0) {
+      return 'Player One'
+    }
+
+    return 'Player Two'
   }
 
   hasEnded () {
