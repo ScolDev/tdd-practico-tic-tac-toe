@@ -29,19 +29,20 @@ class Game {
 }
 
 describe('Tic-Tac-Toe Game', () => {
-  test('should start the game with two players', () => {
-    const game = new Game()
-    game.start()
+  let game
 
+  beforeEach(() => {
+    game = new Game()
+    game.start()
+  })
+
+  test('should start the game with two players', () => {
     expect(game.players.length).toBe(2)
     expect(game.board.length).toBe(3)
     expect(game.board[0].length).toBe(3)
   })
 
   test('should allow to make the first move to the player number one', () => {
-    const game = new Game()
-    game.start()
-
     game.pickCell([1, 2])
 
     expect(game.board[1][2]).toBe('X')
@@ -50,13 +51,20 @@ describe('Tic-Tac-Toe Game', () => {
   })
 
   test('should allow to make the second move to the player number one', () => {
-    const game = new Game()
-    game.start()
-
     game.pickCell([2, 2])
     game.pickCell([0, 1])
 
     expect(game.board[2][2]).toBe('X')
     expect(game.board[0][1]).toBe('O')
+  })
+
+  test('should allow to select only empty cells to the player', () => {
+    game.pickCell([0, 0])
+    game.pickCell([2, 0])
+    game.pickCell([0, 0])
+
+    expect(game.board[0][0]).toBe('X')
+    expect(game.board[2][0]).toBe('O')
+    expect(game.numOfMoves).toBe(2)
   })
 })
