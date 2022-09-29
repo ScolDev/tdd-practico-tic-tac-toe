@@ -1,8 +1,10 @@
 class Game {
   players
   board
+  numOfMoves
 
   start () {
+    this.numOfMoves = 0
     this.players = ['', '']
     this.board = [
       ['', '', ''],
@@ -14,8 +16,14 @@ class Game {
   pickCell (boardCoords) {
     const [x, y] = boardCoords
 
-    this.board[x][y] = 'X'
+    if (this.numOfMoves % 2 === 0) {
+      this.board[x][y] = 'X'
+    } else {
+      this.board[x][y] = 'O'
+    }
+
     this.players = ['X', 'O']
+    this.numOfMoves++
   }
 }
 
