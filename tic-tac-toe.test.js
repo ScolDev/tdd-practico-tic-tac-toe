@@ -26,6 +26,11 @@ class Game {
       return
     }
 
+    this.makeMove(x, y)
+    this.evaluateMove(x, y)
+  }
+
+  makeMove (x, y) {
     this.board[x][y] = this.numOfMoves % 2 === 0
       ? this.players[0]
       : this.players[1]
@@ -39,6 +44,23 @@ class Game {
     ]
 
     if (column[0] !== '' && column[0] === column[1] && column[0] === column[2]) {
+      this.ended = true
+      this.gameResult = 'Player One Wins!'
+    }
+  }
+
+  hasEnded () {
+    return this.ended
+  }
+
+  evaluateMove (x, y) {
+    const column = [
+      this.board[x][0],
+      this.board[x][1],
+      this.board[x][2]
+    ]
+
+    if (column !== '' && column[0] === column[1] && column[0] === column[2]) {
       this.ended = true
       this.gameResult = 'Player One Wins!'
     }
