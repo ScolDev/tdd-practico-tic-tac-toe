@@ -1,3 +1,17 @@
+class Game {
+  players
+  board
+
+  start () {
+    this.players = ['', '']
+    this.board = [
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
+    ]
+  }
+}
+
 describe('Tic-Tac-Toe Game', () => {
   test('should start the game with two players', () => {
     const game = new Game()
