@@ -71,4 +71,17 @@ describe('Tic-Tac-Toe Game', () => {
     expect(game.board[2][0]).toBe('O')
     expect(game.numOfMoves).toBe(2)
   })
+
+  test('should win the player number one', () => {
+    game.pickCell([0, 0])
+    game.pickCell([2, 0])
+    game.pickCell([0, 1])
+    game.pickCell([2, 1])
+    game.pickCell([0, 2])
+
+    const hasEnded = game.hasEnded()
+
+    expect(game.gameResult).toBe('Player One Wins!')
+    expect(hasEnded).toBe(true)
+  })
 })
