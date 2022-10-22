@@ -2,12 +2,14 @@ class Game {
   players
   board
   numOfMoves
+  ended
 
   start () {
     this.initialize()
   }
 
   initialize () {
+    this.ended = false
     this.numOfMoves = 0
     this.players = ['X', 'O']
     this.board = [
@@ -29,6 +31,21 @@ class Game {
       : this.players[1]
 
     this.numOfMoves++
+
+    const column = [
+      this.board[x][0],
+      this.board[x][1],
+      this.board[x][2]
+    ]
+
+    if (column[0] !== '' && column[0] === column[1] && column[0] === column[2]) {
+      this.ended = true
+      this.gameResult = 'Player One Wins!'
+    }
+  }
+
+  hasEnded () {
+    return this.ended
   }
 }
 
